@@ -16,6 +16,9 @@ This is a responsive web application that is used to accomplish things within th
 - Miro
 - Jira
 ## Installation 
+npm i -D prisma
+npx prisma init
+npm i next-auth@latest @next-auth/prisma-adapter 
 ## Contributers 
 - Saw
 - Lynn
