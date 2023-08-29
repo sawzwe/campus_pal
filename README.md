@@ -19,6 +19,8 @@ This is a responsive web application that is used to accomplish things within th
 npm i -D prisma
 npx prisma init
 npm i next-auth@latest @next-auth/prisma-adapter 
+npm install bcrypt
+
 ## Contributers 
 - Saw
 - Lynn
