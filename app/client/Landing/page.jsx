@@ -29,31 +29,45 @@ const page = () => {
   };
 
   return (
-    <div className="p-5 md:p-20">
-      <h1 className="text-5xl md:text-6xl" style={titleStyle}>
+    <div className="p-7 md:p-20">
+      <h1 className="text-3xl md:text-6xl" style={titleStyle}>
         Welcome to Campus Pal
       </h1>
 
       {/* <h1 style={responsiveTitleStyles}>Welcome to Campus Pal</h1> */}
-      <h1 className="pt-10 text-xl xs: pt-12 xs: text-s">Category</h1>
-      <Grid container spacing={4}>
-        <Grid item xs={4} style={gridItemStyles}>
-          <div style={styledBoxCircleStyles}>Item A</div>
+      <h1 className="pb-5 pt-7 text-sm md:pt-12 md:text-2xl">
+        What would you like to do today?
+      </h1>
+      <Grid container spacing={2}>
+        <Grid item xs={6} lg={4} style={gridItemStyles}>
+          <div className="text-xs lg:text-lg" style={styledBoxCircleStyles}>
+            Sports Booking
+          </div>
         </Grid>
-        <Grid item xs={4} style={gridItemStyles}>
-          <div style={styledBoxCircleStyles}>Item B</div>
+        <Grid item xs={6} lg={4} style={gridItemStyles}>
+          <div className="text-xs lg:text-lg" style={styledBoxCircleStyles}>
+            AU Loop
+          </div>
         </Grid>
-        <Grid item xs={4} style={gridItemStyles}>
-          <div style={styledBoxCircleStyles}>Item C</div>
+        <Grid item xs={6} lg={4} style={gridItemStyles}>
+          <div className="text-xs lg:text-lg" style={styledBoxCircleStyles}>
+            Tutorial Sessions
+          </div>
         </Grid>
-        <Grid item xs={4} style={gridItemStyles}>
-          <div style={styledBoxCircleStyles}>Item C</div>
+        <Grid item xs={6} lg={4} style={gridItemStyles}>
+          <div className="text-xs lg:text-lg" style={styledBoxCircleStyles}>
+            Fight Club
+          </div>
         </Grid>
-        <Grid item xs={4} style={gridItemStyles}>
-          <div style={styledBoxCircleStyles}>Item D</div>
+        <Grid item xs={6} lg={4} style={gridItemStyles}>
+          <div className="text-xs lg:text-lg" style={styledBoxCircleStyles}>
+            Doki Doki Literature Club
+          </div>
         </Grid>
-        <Grid item xs={4} style={gridItemStyles}>
-          <div style={styledBoxCircleStyles}>Item E</div>
+        <Grid item xs={6} lg={4} style={gridItemStyles}>
+          <div className="text-xs lg:text-lg" style={styledBoxCircleStyles}>
+            Rent a Girlfriend
+          </div>
         </Grid>
       </Grid>
     </div>
