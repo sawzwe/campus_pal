@@ -24,6 +24,7 @@ npm i -D prisma
 npx prisma init
 npm i next-auth@latest @next-auth/prisma-adapter 
 npm install bcrypt
+```
 
 ## Contributors
 Saw
