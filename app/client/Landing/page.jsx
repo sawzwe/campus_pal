@@ -30,11 +30,12 @@ const page = () => {
 
   return (
     <div className="p-5 md:p-20">
-      <h1 className="text-5xl" style={titleStyle}>
+      <h1 className="text-5xl md:text-6xl" style={titleStyle}>
         Welcome to Campus Pal
       </h1>
+
       {/* <h1 style={responsiveTitleStyles}>Welcome to Campus Pal</h1> */}
-      <h1 className="pt-8 pb-4 md:pt-8 lg:pt-12 text-xl">Category</h1>
+      <h1 className="pt-10 text-xl xs: pt-12 xs: text-s">Category</h1>
       <Grid container spacing={4}>
         <Grid item xs={4} style={gridItemStyles}>
           <div style={styledBoxCircleStyles}>Item A</div>
