@@ -11,5 +11,9 @@
 
 body {
   background-color: #ffffff;
+  /* background-image: url('/bg.jpg'); Replace 'bg.jpg' with the actual filename */
+  background-size: cover;
+  background-repeat: no-repeat;
 }
+
 
