@@ -27,6 +27,6 @@ npm install bcrypt
 ```
 
 ## Contributors
-Saw
-Lynn
-Lucus
+- Saw
+- Lynn
+- Lucus
