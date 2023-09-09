@@ -1,8 +1,9 @@
+import Landing from "/app/client/Landing/page.jsx";
+
 export default function Home() {
   return (
     <>
-      <h1> Landing Page </h1>
+      <Landing />
     </>
-
-  )
+  );
 }
