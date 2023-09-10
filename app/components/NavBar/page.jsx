@@ -67,9 +67,23 @@ export default function NavBar() {
 
   return (
     <div>
-      <Box sx={{ display: "flex", paddingTop: "10px", paddingBottom: "10px" }}>
-        <Box sx={{ flex: 1, paddingLeft: "10px" }}>
-          <MenuIcon onClick={toggleDrawer(true)} />
+      <Box
+        sx={{
+          display: "flex",
+          background: "linear-gradient(92deg, #651428 13.31%, #3E0427 93.96%)",
+          height: "80px",
+          paddingTop: "10px",
+          paddingBottom: "10px",
+        }}
+      >
+        <Box sx={{ display: "flex", alignItems: "center", flex: 1, paddingLeft: "10px" }}>
+          <MenuIcon
+            sx={{
+              color: "white",
+              opacity: 0.8,
+            }}
+            onClick={toggleDrawer(true)}
+          />
           <Drawer
             anchor="left"
             open={state.menuOpen}
@@ -83,15 +97,15 @@ export default function NavBar() {
         >
           <NotificationsIcon
             sx={{
-              color: "black", // Change the color to red (you can use any valid color)
-              opacity: 0.8, // Change the opacity (0.7 means 70% opacity)
+              color: "white",
+              opacity: 0.8,
             }}
           />
           <Box sx={{ paddingLeft: "10px" }}>
             <AccountCircleIcon
               sx={{
-                color: "black", // Change the color to red (you can use any valid color)
-                opacity: 0.8, // Change the opacity (0.7 means 70% opacity)
+                color: "white",
+                opacity: 0.8,
               }}
             />
           </Box>
