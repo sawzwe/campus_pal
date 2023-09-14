@@ -7,7 +7,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const CourseCard = ({ course }) => {
     return (
-        <Card variant="outlined" sx={{ marginBottom: "10px", position: "relative", boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.3)" }}>
+        <Card variant="outlined" sx={{height:"140px", marginBottom: "10px", position: "relative", boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.3)" }}>
             <Box
                 sx={{
                     display: "flex",
