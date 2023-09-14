@@ -1,0 +1,17 @@
+[
+    {
+      "courseId": "CSX3001",
+      "title": "Fundamental Programming",
+      "semester": "2023/1",
+      "prerequisite": "None",
+      "location": "TrueLab"
+    },
+    {
+      "courseId": "CSX3009",
+      "title": "Algorithm Design",
+      "semester": "2023/1",
+      "prerequisite": "None",
+      "location": "TrueLab"
+    }
+  ]
+  
