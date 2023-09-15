@@ -71,7 +71,7 @@ export default function NavBar() {
         sx={{
           display: "flex",
           background: "linear-gradient(92deg, #651428 13.31%, #3E0427 93.96%)",
-          height: "80px",
+          height: "60px",
           paddingTop: "10px",
           paddingBottom: "10px",
         }}

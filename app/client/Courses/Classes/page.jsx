@@ -1,4 +1,5 @@
 import React from "react";
+import {Grid} from "@mui/material"
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
@@ -59,6 +60,30 @@ const dummyData = [
 const Page = () => {
   return (
     <div>
+      <Grid
+        container
+        alignItems="center"
+        justifyContent="center"
+        sx={{ padding: "10px" }}
+      >
+        <Grid item>
+          <Link href="/client/Courses">
+            <ArrowBackIosIcon sx={{ marginBottom: "8px" }} />
+          </Link>
+        </Grid>
+        <Grid item sx={{ flex: 1 }}>
+          <Typography
+            variant="h5"
+            gutterBottom
+            fontWeight="bold"
+            textAlign="center"
+            sx={{ marginRight: "10px" }}
+          >
+            Upcoming Classes
+          </Typography>
+        </Grid>
+      </Grid>
+
       <Box
         sx={{
           display: "flex",
@@ -67,21 +92,6 @@ const Page = () => {
           paddingRight: "10px",
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center", // Align items vertically within the flex container
-            padding: "10px", // Add padding between ArrowBackIosIcon and Typography
-          }}
-        >
-          <Link href="/client/Courses">
-            <ArrowBackIosIcon style={{ cursor: "pointer" }} />
-          </Link>
-          <Typography variant="h4" gutterBottom>
-            Classes
-          </Typography>
-        </Box>
-
         {dummyData.map((course, index) => (
           <Card variant="outlined" key={index} sx={{ marginBottom: "10px" }}>
             <CardContent
