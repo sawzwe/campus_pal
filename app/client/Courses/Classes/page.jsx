@@ -8,6 +8,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import Link from "next/link";
 import ClassCard from "@/app/components/Classes/ClassCard";
+import ClassCalendar from "@/app/components/Classes/ClassCalendar";
 // import { useRouter } from "next/router"; // Import the useRouter hook
 
 const dummyData = [
@@ -30,7 +31,7 @@ const dummyData = [
     classId: "CP102",
     lecturerId: "LYN456",
     dateCreated: "2023-09-10",
-    sessionDates: ["2023-09-15", "2023-09-22", "2023-09-29"],
+    sessionDates: ["2023-09-18", "2023-09-19", "2023-09-29"],
     location:"TrueLab",
     goals: "Anime girls are real kekw",
     tools: ["SQL","GCP", "Python"]
@@ -72,34 +73,8 @@ const Page = () => {
           paddingRight: "10px",
         }}
       >
+        <ClassCalendar classDate = {dummyData}/>
         <ClassCard classes={dummyData}/>
-        {/* {dummyData.map((course, index) => (
-          <Card variant="outlined" key={index} sx={{ marginBottom: "10px" }}>
-            <CardContent
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                paddingBottom: "10px", // Add padding after the card
-              }}
-            >
-              <Box>
-                <Typography variant="h5" component="div">
-                  {course.title}
-                </Typography>
-                <Typography color="textSecondary">
-                  {course.instructor}
-                </Typography>
-              </Box>
-              <ArrowForwardIosIcon
-                sx={{
-                  color: "gray", // Change the color to red (you can use any valid color)
-                  opacity: 0.7, // Change the opacity (0.7 means 70% opacity)
-                }}
-              />
-            </CardContent>
-          </Card>
-        ))} */}
       </Box>
     </div>
   );
