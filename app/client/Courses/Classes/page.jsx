@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import Link from "next/link";
+import ClassCard from "@/app/components/Classes/ClassCard";
 // import { useRouter } from "next/router"; // Import the useRouter hook
 
 const dummyData = [
@@ -18,6 +19,9 @@ const dummyData = [
     lecturerId: "LUC123",
     dateCreated: "2023-09-10",
     sessionDates: ["2023-09-15", "2023-09-22", "2023-09-29"],
+    location:"TrueLab",
+    goals: "Never gonna give you up",
+    tools: ["MongoDB","UI/UX", "Python"]
   },
   {
     courseId: "CSX3001",
@@ -27,34 +31,10 @@ const dummyData = [
     lecturerId: "LYN456",
     dateCreated: "2023-09-10",
     sessionDates: ["2023-09-15", "2023-09-22", "2023-09-29"],
+    location:"TrueLab",
+    goals: "Anime girls are real kekw",
+    tools: ["SQL","GCP", "Python"]
   },
-  // {
-  //   courseId: 'CSX3009',
-  //   title: "Algorithm Design",
-  //   instructor: "Lynn Thit",
-  //   classId: "AD202",
-  //   lecturerId: "LYN456",
-  //   dateCreated: "2023-09-12",
-  //   sessionDates: [
-  //     "2023-09-18",
-  //     "2023-09-25",
-  //     "2023-10-02",
-  //   ],
-  // },
-  // {
-  //   courseId: 'CSX3006',
-  //   title: "Database Management",
-  //   instructor: "Saw Zwe",
-  //   classId: "DB303",
-  //   lecturerId: "JOH789",
-  //   dateCreated: "2023-09-14",
-  //   sessionDates: [
-  //     "2023-09-20",
-  //     "2023-09-27",
-  //     "2023-10-04",
-  //   ],
-  // },
-  // Add more course objects here if needed
 ];
 
 const Page = () => {
@@ -92,7 +72,8 @@ const Page = () => {
           paddingRight: "10px",
         }}
       >
-        {dummyData.map((course, index) => (
+        <ClassCard classes={dummyData}/>
+        {/* {dummyData.map((course, index) => (
           <Card variant="outlined" key={index} sx={{ marginBottom: "10px" }}>
             <CardContent
               sx={{
@@ -118,7 +99,7 @@ const Page = () => {
               />
             </CardContent>
           </Card>
-        ))}
+        ))} */}
       </Box>
     </div>
   );

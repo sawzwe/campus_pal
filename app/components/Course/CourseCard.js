@@ -63,7 +63,7 @@ const CourseCard = ({ course }) => {
                                 />
                             </Grid>
                             {/* Prerequisite Box */}
-                            <Grid item xs={4}>
+                            <Grid item xs={3}>
                                 <Box
                                     sx={{
                                         padding: "20px 0px 20px 0px",
@@ -108,7 +108,7 @@ const CourseCard = ({ course }) => {
                             </Grid>
 
                             {/* Location Box */}
-                            <Grid item xs={3}>
+                            <Grid item xs={4}>
                                 <Box
                                     sx={{
                                         padding: "20px 20px 20px 10px",
