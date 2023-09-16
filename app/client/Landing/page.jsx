@@ -299,15 +299,10 @@ const page = () => {
             Offered Courses:
           </h1>
         </div>
-        <Grid container spacing={4}>
-          {dummyOfferedCoursesData.map((course, index) => (
-            <Grid item xs={12} md={12} lg={6} key={index}>
-              {/* Attach the click event handler to the CourseCard */}
-              <div onClick={() => handleCardClick(course)}>
-                <CourseCard course={course} />
-              </div>
-            </Grid>
-          ))}
+        <Grid container psacing={4}>
+          <Grid item xs={12} md={12} lg={6}>
+            <CourseCard course={dummyOfferedCoursesData} />
+          </Grid>
         </Grid>
       </div>
 
