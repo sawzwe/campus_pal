@@ -1,7 +1,9 @@
 "use client";
 import * as React from "react";
 import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
 import Drawer from "@mui/material/Drawer";
+import { Fab, Typography } from "@mui/material";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
@@ -13,6 +15,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications"; // Import NotificationsIcon
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"; // Import AccountCircleIcon
+import Link from "next/link"; // Import Link from Next.js
 
 export default function NavBar() {
   const [state, setState] = React.useState({
@@ -37,27 +40,73 @@ export default function NavBar() {
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
+      <Card
+        sx={{
+          height: "80px",
+          margin: "10px",
+          backgroundColor: "#FEFEFE",
+          display: "flex",
+          alignItems: "center",
+          paddingLeft: "10px",
+        }}
+      >
+        <Link href="/client/Profile">
+          <Fab>P</Fab>
+        </Link>
+
+        <Typography
+          variant="sub-heading2"
+          sx={{ fontSize: "1rem", color: "#0e0e0e", paddingLeft: "10px" }}
+        >
+          Profile
+        </Typography>
+      </Card>
+      <Divider />
+
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {["Home", "Active Courses", "Classes"].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              {text === "Home" ? (
+                <Link href="/">
+                  <ListItemText primary={text} />
+                </Link>
+              ) : text === "Active Courses" ? (
+                <Link href="/client/Courses">
+                  <ListItemText primary={text} />
+                </Link>
+              ) : text === "Classes" ? (
+                <Link href="/client/Courses/Classes">
+                  <ListItemText primary={text} />
+                </Link>
+              ) : (
+                <ListItemText primary={text} />
+              )}
             </ListItemButton>
           </ListItem>
         ))}
       </List>
+
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
+        {["Profile", "Log Out"].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              {text === "Log Out" ? (
+                <Link href="/">
+                  <ListItemText primary={text} />
+                </Link>
+              ) : (
+                <Link href="/client/Profile">
+                  <ListItemText primary={text} />
+                </Link>
+              )}
             </ListItemButton>
           </ListItem>
         ))}
@@ -76,7 +125,14 @@ export default function NavBar() {
           paddingBottom: "10px",
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center", flex: 1, paddingLeft: "10px" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            flex: 1,
+            paddingLeft: "10px",
+          }}
+        >
           <MenuIcon
             sx={{
               color: "white",
