@@ -12,6 +12,7 @@ import Slide from "@mui/material/Slide";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import LandingCard from "@/app/components/Course/LandingCard";
+import Link from "next/link";
 
 const dummyOfferedCoursesData = [
   {
