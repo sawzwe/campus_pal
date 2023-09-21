@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import Slide from "@mui/material/Slide";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import LandingCard from "@/app/components/Course/LandingCard";
 
 const dummyOfferedCoursesData = [
   {
@@ -299,10 +300,12 @@ const page = () => {
             Offered Courses:
           </h1>
         </div>
-        <Grid container psacing={4}>
-          <Grid item xs={12} md={12} lg={6}>
-            <CourseCard course={dummyOfferedCoursesData} />
-          </Grid>
+        <Grid container spacing={4}>
+          {dummyOfferedCoursesData.map((course, index) => (
+            <Grid item xs={12} md={6} lg={4} key={index}>
+              <LandingCard course={course} onCardClick={handleCardClick} />
+            </Grid>
+          ))}
         </Grid>
       </div>
 
