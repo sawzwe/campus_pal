@@ -1,7 +1,9 @@
 "use client";
 import * as React from "react";
 import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
 import Drawer from "@mui/material/Drawer";
+import { Fab, Typography } from "@mui/material";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
@@ -13,6 +15,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications"; // Import NotificationsIcon
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"; // Import AccountCircleIcon
+import Link from "next/link"; // Import Link from Next.js
 
 export default function NavBar() {
   const [state, setState] = React.useState({
@@ -37,27 +40,88 @@ export default function NavBar() {
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
+      <Link href="/client/Profile">
+        <Card
+          sx={{
+            height: "80px",
+            margin: "10px",
+            backgroundColor: "#FEFEFE",
+            display: "flex",
+            alignItems: "center",
+            paddingLeft: "10px",
+          }}
+        >
+          <img
+            src="/abac.svg" // Specify the path to your image in the public folder
+            alt="User Avatar"
+            width={84} // Set the desired width
+            height={84} // Set the desired height
+          />
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column", // Display items in a column layout
+              marginLeft: "10px", // Add some spacing between the image and text
+            }}
+          >
+            <Typography variant="subtitle1">Monkey D Luffy</Typography>
+            <Typography
+              variant="body1"
+              sx={{ fontSize: "0.8rem", color: "#0e0e0e", opacity: "0.6" }}
+            >
+              Student
+            </Typography>
+          </div>
+        </Card>
+      </Link>
+
+      <Divider />
+
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {["Home", "Active Courses", "Classes"].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              {text === "Home" ? (
+                <Link href="/">
+                  <ListItemText primary={text} />
+                </Link>
+              ) : text === "Active Courses" ? (
+                <Link href="/client/Courses">
+                  <ListItemText primary={text} />
+                </Link>
+              ) : text === "Classes" ? (
+                <Link href="/client/Courses/Classes">
+                  <ListItemText primary={text} />
+                </Link>
+              ) : (
+                <ListItemText primary={text} />
+              )}
             </ListItemButton>
           </ListItem>
         ))}
       </List>
+
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
+        {["Profile", "Log Out"].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              {text === "Log Out" ? (
+                <Link href="/">
+                  <ListItemText primary={text} />
+                </Link>
+              ) : (
+                <Link href="/client/Profile">
+                  <ListItemText primary={text} />
+                </Link>
+              )}
             </ListItemButton>
           </ListItem>
         ))}
@@ -76,7 +140,14 @@ export default function NavBar() {
           paddingBottom: "10px",
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center", flex: 1, paddingLeft: "10px" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            flex: 1,
+            paddingLeft: "10px",
+          }}
+        >
           <MenuIcon
             sx={{
               color: "white",
@@ -102,12 +173,20 @@ export default function NavBar() {
             }}
           />
           <Box sx={{ paddingLeft: "10px" }}>
-            <AccountCircleIcon
+          <Link href="/client/Profile">
+            <img
+              src="/abac.svg" // Specify the path to your image in the public folder
+              alt="User Avatar"
+              width={48} // Set the desired width
+              height={48} // Set the desired height
+            />
+            </Link>
+            {/* <AccountCircleIcon
               sx={{
                 color: "white",
                 opacity: 0.8,
               }}
-            />
+            /> */}
           </Box>
         </Box>
       </Box>
