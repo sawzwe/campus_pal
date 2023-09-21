@@ -1,9 +1,14 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Inter, Chakra_Petch } from 'next/font/google'
 import NavBar from './components/NavBar/page'
 import Head from 'next/head'
 
 const inter = Inter({ subsets: ['latin'] })
+const chakra = Chakra_Petch({
+   subsets: ['latin'],
+   weight: ['300', '400' , '500', '600', '700'],
+  })
+
 
 export const metadata = {
   title: 'Tutor Plus',
