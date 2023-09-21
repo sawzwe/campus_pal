@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
-import CourseCard from "@/app/components/Course/CourseCard";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
