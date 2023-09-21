@@ -403,8 +403,8 @@ const Page = () => {
           onClose={closeSuccessNotification}
           severity="success"
         >
-          You've successfully registered for {selectedCourse?.title}.{" "}
-          <u>Take me there</u>.
+          You&apos;ve successfully registered for {selectedCourse?.title}.{" "}
+          <Link>Take me there</Link>.
         </MuiAlert>
       </Snackbar>
     </>
