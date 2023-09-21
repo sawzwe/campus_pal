@@ -405,7 +405,7 @@ const Page = () => {
           severity="success"
         >
           You&apos;ve successfully registered for {selectedCourse?.title}.{" "}
-          <Link href="">Take me there</Link>.
+          <Link href="client/Courses">Take me there</Link>.
         </MuiAlert>
       </Snackbar>
     </>
