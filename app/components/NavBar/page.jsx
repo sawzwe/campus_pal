@@ -40,27 +40,42 @@ export default function NavBar() {
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
-      <Card
-        sx={{
-          height: "80px",
-          margin: "10px",
-          backgroundColor: "#FEFEFE",
-          display: "flex",
-          alignItems: "center",
-          paddingLeft: "10px",
-        }}
-      >
-        <Link href="/client/Profile">
-          <Fab>P</Fab>
-        </Link>
-
-        <Typography
-          variant="sub-heading2"
-          sx={{ fontSize: "1rem", color: "#0e0e0e", paddingLeft: "10px" }}
+      <Link href="/client/Profile">
+        <Card
+          sx={{
+            height: "80px",
+            margin: "10px",
+            backgroundColor: "#FEFEFE",
+            display: "flex",
+            alignItems: "center",
+            paddingLeft: "10px",
+          }}
         >
-          Profile
-        </Typography>
-      </Card>
+          <img
+            src="/abac.svg" // Specify the path to your image in the public folder
+            alt="User Avatar"
+            width={84} // Set the desired width
+            height={84} // Set the desired height
+          />
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column", // Display items in a column layout
+              marginLeft: "10px", // Add some spacing between the image and text
+            }}
+          >
+            <Typography variant="subtitle1">Monkey D Luffy</Typography>
+            <Typography
+              variant="body1"
+              sx={{ fontSize: "0.8rem", color: "#0e0e0e", opacity: "0.6" }}
+            >
+              Student
+            </Typography>
+          </div>
+        </Card>
+      </Link>
+
       <Divider />
 
       <List>
@@ -158,12 +173,20 @@ export default function NavBar() {
             }}
           />
           <Box sx={{ paddingLeft: "10px" }}>
-            <AccountCircleIcon
+          <Link href="/client/Profile">
+            <img
+              src="/abac.svg" // Specify the path to your image in the public folder
+              alt="User Avatar"
+              width={48} // Set the desired width
+              height={48} // Set the desired height
+            />
+            </Link>
+            {/* <AccountCircleIcon
               sx={{
                 color: "white",
                 opacity: 0.8,
               }}
-            />
+            /> */}
           </Box>
         </Box>
       </Box>
