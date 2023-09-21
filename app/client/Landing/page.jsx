@@ -66,7 +66,7 @@ const BannerSlideshow = () => {
   );
 };
 
-const page = () => {
+const Page = () => {
   const titleStyle = {
     // fontWeight: "bold", // Make it bold
     fontFamily: "Poppins, sans-serif", // Choose a suitable font family
@@ -411,4 +411,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
