@@ -12,7 +12,7 @@ const LandingCard = ({ course, onCardClick }) => {
     <Card
       variant="outlined"
       sx={{
-        marginBottom: "10px",
+        marginBottom: "0px", // updated marginBottom to 0px from 10px
         position: "relative",
         boxShadow: "0px 4px 50px -7px rgba(0, 0, 0, 0.25)",
         borderRadius: 1.5,
