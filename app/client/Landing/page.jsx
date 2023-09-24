@@ -52,16 +52,11 @@ const BannerSlideshow = () => {
   }, []);
 
   return (
-    <div>
+    <div className="relative lg:h-96">
       <img
         src={images[currentImage]}
         alt={`Banner ${currentImage + 1}`}
-        style={{
-          width: "100%",
-          height: "200px",
-          objectFit: "cover",
-          objectPosition: "center",
-        }}
+        className="w-full h-50 object-cover object-center lg:h-full transition-opacity duration-500"
       />
     </div>
   );
@@ -76,45 +71,12 @@ const Page = () => {
     textAlign: "center", // Center align the title
   };
 
-  const styledBoxCircleStyles = {
-    width: "100%",
-    height: "100%",
-    paddingRight: "0.5em",
-    paddingLeft: "0.5em",
-    paddingTop: "2em",
-    paddingBottom: "0.5em",
-    backgroundColor: "#ffffff",
-    borderRadius: "10px",
-    boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.2)",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    position: "relative",
-  };
-
-  const gridItemStyles = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "1em",
-  };
-
-  const textStyles = {
-    fontFamily: "Arial, sans-serif",
-    color: "#333", // Set your desired text color
-    fontSize: "1em", // Adjust the font size as needed
-    lineHeight: "1.5", // Adjust the line height as needed
-    textAlign: "left",
-    paddingBottom: "1em", // Adjust the padding as needed
-    paddingLeft: "0em", // Adjust the padding as needed
-  };
-
-  const imageStyles = {
-    height: "100px", // Set your desired fixed height here
-    width: "auto", // Maintain aspect ratio
-    borderTopLeftRadius: "10px",
-    borderBottomLeftRadius: "10px",
-    objectFit: "cover", // Maintain aspect ratio and cover the container
+  const subtitleStyle = {
+    // fontWeight: "bold", // Make it bold
+    fontFamily: "Poppins, sans-serif", // Choose a suitable font family
+    fontWeight: "bold",
+    color: "#D21F3C", // Set your desired text color
+    textAlign: "left", // Center align the title
   };
 
   // State to control the visibility of the dialog
@@ -149,149 +111,17 @@ const Page = () => {
   };
 
   return (
-    // <>
-    //   <div className="banner">
-    //     <BannerSlideshow />
-    //   </div>
-    //   <div className="pt-3 p-7 md:p-20">
-    //     <h1 className="text-2xl md:text-5xl" style={titleStyle}>
-    //       Welcome to VMS Tutoring
-    //     </h1>
-    //     <div
-    //       style={{
-    //         display: "flex",
-    //         alignItems: "center",
-    //         width: "50%",
-    //         margin: "0 auto",
-    //       }}
-    //     >
-    //       <h1
-    //         className="pb-3 pt-5 text-sm md:pt-12 md:text-2xl"
-    //         style={{ textAlign: "left" }}
-    //       >
-    //         Offered Courses:
-    //       </h1>
-    //     </div>
-    //     <Grid container spacing={4} style={gridItemStyles}>
-    //       <Grid item xs={12} md={12} lg={6}>
-    //         <div className="text-xs lg:text-lg" style={styledBoxCircleStyles}>
-    //           <Grid container spacing={2}>
-    //             <Grid item xs={6} md={5} lg={5}>
-    //               <img
-    //                 src="/spreadsheet.svg"
-    //                 alt="My Image"
-    //                 style={imageStyles}
-    //               />
-    //             </Grid>
-    //             <Grid item xs={5} md={7} lg={5}>
-    //               <p style={textStyles}>
-    //                 <b>Principles of Statistics</b>
-    //                 <br />
-    //                 <br />
-    //                 Pre-requisites: None
-    //                 <br />
-    //                 Location: TrueLab
-    //               </p>
-    //             </Grid>
-    //             <Grid
-    //               item
-    //               xs={1}
-    //               md={7}
-    //               lg={2}
-    //               style={{
-    //                 display: "flex",
-    //                 alignItems: "center",
-    //                 justifyContent: "center",
-    //               }}
-    //             >
-    //               <MdOutlineKeyboardArrowRight style={{ fontSize: "32px" }} />
-    //             </Grid>
-    //           </Grid>
-    //         </div>
-    //       </Grid>
-    //     </Grid>
-    //     <Grid container spacing={4} style={gridItemStyles}>
-    //       <Grid item xs={12} md={12} lg={6}>
-    //         <div className="text-xs lg:text-lg" style={styledBoxCircleStyles}>
-    //           <Grid container spacing={2}>
-    //             <Grid item xs={6} md={5} lg={5}>
-    //               <img src="/co_op.svg" alt="My Image" style={imageStyles} />
-    //             </Grid>
-    //             <Grid item xs={5} md={7} lg={5}>
-    //               <p style={textStyles}>
-    //                 <b>Fundamentals of Programming</b>
-    //                 <br />
-    //                 <br />
-    //                 Pre-requisites: None
-    //                 <br />
-    //                 Location: TrueLab
-    //               </p>
-    //             </Grid>
-    //             <Grid
-    //               item
-    //               xs={1}
-    //               md={7}
-    //               lg={2}
-    //               style={{
-    //                 display: "flex",
-    //                 alignItems: "center",
-    //                 justifyContent: "center",
-    //               }}
-    //             >
-    //               <MdOutlineKeyboardArrowRight style={{ fontSize: "32px" }} />
-    //             </Grid>
-    //           </Grid>
-    //         </div>
-    //       </Grid>
-    //     </Grid>
-    //     <Grid container spacing={4} style={gridItemStyles}>
-    //       <Grid item xs={12} md={12} lg={6}>
-    //         <div className="text-xs lg:text-lg" style={styledBoxCircleStyles}>
-    //           <Grid container spacing={2}>
-    //             <Grid item xs={6} md={5} lg={5}>
-    //               <img src="/oop.svg" alt="My Image" style={imageStyles} />
-    //             </Grid>
-    //             <Grid item xs={5} md={5} lg={5}>
-    //               <p style={textStyles}>
-    //                 <b>Object-Oriented Programming</b>
-    //                 <br />
-    //                 <br />
-    //                 Pre-requisites: None
-    //                 <br />
-    //                 Location: TrueLab
-    //               </p>
-    //             </Grid>
-    //             <Grid
-    //               item
-    //               xs={1}
-    //               md={2}
-    //               lg={2}
-    //               style={{
-    //                 display: "flex",
-    //                 alignItems: "center",
-    //                 justifyContent: "center",
-    //               }}
-    //             >
-    //               <MdOutlineKeyboardArrowRight style={{ fontSize: "32px" }} />
-    //             </Grid>
-    //           </Grid>
-    //         </div>
-    //       </Grid>
-    //     </Grid>
-    //   </div>
-    // </>
-
     <>
       <div className="banner">
         <BannerSlideshow />
-        <h1 className="pt-1 text-2xl md:text-5xl" style={titleStyle}>
+        <h1 className="lg:pt-5 pt-1 text-2xl md:text-5xl" style={titleStyle}>
           Welcome to VMS Tutoring
         </h1>
       </div>
-      <div className="pt-3 p-3 md:p-20">
+      <div className="p-5 lg:pl-20 lg:pr-20 ">
         <div>
           <h1
-            className="pb-3 pt-5 text-xl md:pt-12 md:text-2xl"
+            className="pb-3 text-xl md:pt-10 md:text-2xl"
             style={{
               textAlign: "left",
               fontFamily: "Helvetica, sans-serif",
@@ -405,7 +235,7 @@ const Page = () => {
           severity="success"
         >
           You&apos;ve successfully registered for {selectedCourse?.title}.{" "}
-          <Link>Take me there</Link>.
+          <Link href="client/Courses">Take me there</Link>.
         </MuiAlert>
       </Snackbar>
     </>
