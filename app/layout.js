@@ -63,7 +63,7 @@ import NavBar from './components/NavBar/page'
 import Head from 'next/head'
 
 const inter = Inter({ subsets: ['latin'] })
-const chakra = Chakra_Petch({
+const chakra2 = Chakra_Petch({
    subsets: ['latin'],
    weight: ['300', '400' , '500', '600', '700'],
   })
