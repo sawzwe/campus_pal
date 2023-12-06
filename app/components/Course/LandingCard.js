@@ -137,7 +137,7 @@ const LandingCard = ({ course, onCardClick }) => {
                   color: "#651428",
                 }}
               >
-                {course.prerequisite}
+                {course.Prerequisite}
               </Typography>
               <Typography
                 variant="body2"
@@ -146,7 +146,7 @@ const LandingCard = ({ course, onCardClick }) => {
                   textAlign: "left",
                 }}
               >
-                {course.location}
+                {course.Location}
               </Typography>
             </Box>
           </Grid>
