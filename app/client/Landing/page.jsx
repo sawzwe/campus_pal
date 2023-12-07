@@ -63,6 +63,24 @@ const BannerSlideshow = () => {
 };
 
 const Page = () => {
+  const [offeredCoursesData, setOfferedCoursesData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://tutorplus-backend.vercel.app/api/offeredCourses"
+        ); // Replace with your actual API endpoint
+        const data = await response.json();
+        setOfferedCoursesData(data);
+        setLoading(false); // Assuming your API response is an array of anime objects
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const titleStyle = {
     // fontWeight: "bold", // Make it bold
     fontFamily: "Poppins, sans-serif", // Choose a suitable font family
@@ -110,6 +128,18 @@ const Page = () => {
     setIsSuccessNotificationOpen(false);
   };
 
+  const [loading, setLoading] = useState(true);
+
+  if (loading) {
+    // Render the loading GIF while fetching tasks
+    return (
+      <div className="flex justify-center items-center">
+        <h1>Cooking your courses ^^</h1>
+        <img src="/loading1.gif" alt="Loading..." />
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="banner">
@@ -131,7 +161,7 @@ const Page = () => {
           </h1>
         </div>
         <Grid container spacing={4}>
-          {dummyOfferedCoursesData.map((course, index) => (
+          {offeredCoursesData.map((course, index) => (
             <Grid item xs={12} md={6} lg={4} key={index}>
               <LandingCard course={course} onCardClick={handleCardClick} />
             </Grid>
