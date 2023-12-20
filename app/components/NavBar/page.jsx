@@ -16,6 +16,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications"; // Import NotificationsIcon
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"; // Import AccountCircleIcon
 import Link from "next/link"; // Import Link from Next.js
+import styles from "./NavBar.module.css";
 
 export default function NavBar() {
   const [state, setState] = React.useState({
@@ -35,7 +36,8 @@ export default function NavBar() {
 
   const list = () => (
     <Box
-      sx={{ width: 250 }}
+      // sx={{ width: 250 }}
+      className={styles.drawer}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
@@ -130,7 +132,7 @@ export default function NavBar() {
   );
 
   return (
-    <div>
+    <div  className={styles.navbarWrapper}>
       <Box
         sx={{
           display: "flex",

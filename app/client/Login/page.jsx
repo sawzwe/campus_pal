@@ -7,9 +7,9 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
   useEffect(() => {
     // Check for authentication status on component mount
     const storedIsLoggedIn = localStorage.getItem("isLoggedIn");

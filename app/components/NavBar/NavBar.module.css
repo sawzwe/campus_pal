@@ -1,0 +1,13 @@
+/* NavBar.module.css */
+
+.navbarWrapper {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+  }
+  
+  .drawer {
+    width: 250px;
+  }
+  
