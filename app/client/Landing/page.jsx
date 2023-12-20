@@ -13,29 +13,30 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import LandingCard from "@/app/components/Course/LandingCard";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-const dummyOfferedCoursesData = [
-  {
-    title: "Principles of Statistics",
-    prerequisite: "None",
-    location: "TrueLab",
-  },
-  {
-    title: "Fundamentals of Programming",
-    prerequisite: "None",
-    location: "TrueLab",
-  },
-  {
-    title: "Object-Oriented Programming",
-    prerequisite: "CSX-3001",
-    location: "TrueLab",
-  },
-  {
-    title: "Data Structure & Algorithms",
-    prerequisite: "None",
-    location: "TrueLab",
-  },
-];
+// const dummyOfferedCoursesData = [
+//   {
+//     title: "Principles of Statistics",
+//     prerequisite: "None",
+//     location: "TrueLab",
+//   },
+//   {
+//     title: "Fundamentals of Programming",
+//     prerequisite: "None",
+//     location: "TrueLab",
+//   },
+//   {
+//     title: "Object-Oriented Programming",
+//     prerequisite: "CSX-3001",
+//     location: "TrueLab",
+//   },
+//   {
+//     title: "Data Structure & Algorithms",
+//     prerequisite: "None",
+//     location: "TrueLab",
+//   },
+// ];
 
 const BannerSlideshow = () => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -64,6 +65,19 @@ const BannerSlideshow = () => {
 
 const Page = () => {
   const [offeredCoursesData, setOfferedCoursesData] = useState([]);
+
+  // Add the useRouter hook
+  const router = useRouter();
+
+  // Function to handle signout
+  const handleSignOut = () => {
+    // Clear isLoggedIn state in local storage
+    localStorage.clear();
+
+    // Redirect the user to the login page
+    router.replace("/client/Login");
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -87,14 +101,6 @@ const Page = () => {
     fontWeight: "bold",
     color: "#D21F3C", // Set your desired text color
     textAlign: "center", // Center align the title
-  };
-
-  const subtitleStyle = {
-    // fontWeight: "bold", // Make it bold
-    fontFamily: "Poppins, sans-serif", // Choose a suitable font family
-    fontWeight: "bold",
-    color: "#D21F3C", // Set your desired text color
-    textAlign: "left", // Center align the title
   };
 
   // State to control the visibility of the dialog
@@ -168,6 +174,7 @@ const Page = () => {
           ))}
         </Grid>
       </div>
+      <Button onClick={handleSignOut}>Sign out</Button>
 
       {/* Confirmation Dialog */}
       <Dialog
@@ -265,7 +272,7 @@ const Page = () => {
           severity="success"
         >
           You&apos;ve successfully registered for {selectedCourse?.title}.{" "}
-          <Link href="client/Courses">Take me there</Link>.
+          <Link href="/client/Courses">Take me there</Link>.
         </MuiAlert>
       </Snackbar>
     </>
