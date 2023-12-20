@@ -37,13 +37,11 @@ const Page = () => {
     <>
       <div>Client Login Page</div>
       <Button onClick={handleSignIn}>Sign in with Google</Button>
-      {isLoggedIn && (
+      {/* {isLoggedIn && (
         <>
-          <h1>{localStorage.getItem("name")}</h1>
-          <h1>{localStorage.getItem("email")}</h1>
-          <h1>{localStorage.getItem("profilePic")}</h1>
+          <Landing setIsLoggedIn={setIsLoggedIn} />
         </>
-      )}
+      )} */}
     </>
   );
 };
