@@ -2,14 +2,16 @@
 
 import React from "react";
 import Button from "@mui/material/Button";
-import { signInWithGoogle } from "@/app/Firebase";
+// import { signInWithGoogle } from "@/app/Firebase";
+import { UserAuth } from "@/app/auth/AuthContext";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
+
+  const { user, signInWithGoogle, logOut } = UserAuth();
   useEffect(() => {
     // Check for authentication status on component mount
     const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
