@@ -273,6 +273,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import { Button } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -280,12 +281,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { UserAuth } from "../../auth/AuthContext";
 import styles from "./NavBar.module.css";
-import withAuth from '../../auth/WithAuth'
-
+import withAuth from "../../auth/WithAuth";
 
 // export default function NavBar() {
 function NavBar() {
-
   const { user, signInWithGoogle, logOut } = UserAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
@@ -301,7 +300,7 @@ function NavBar() {
   const handleSignOut = async () => {
     try {
       await logOut();
-      router.replace("/client/Login");
+      // router.replace("/client/Login");
     } catch (err) {
       console.error(err);
     }
@@ -324,6 +323,10 @@ function NavBar() {
       onKeyDown={toggleDrawer(false)}
       className={styles.drawer}
     >
+      <Box>
+        {" "}
+        <Button onClick={handleSignIn}>Sign in with Google</Button>
+      </Box>
       <Link href="/client/Profile" passHref>
         <Card
           sx={{
@@ -380,14 +383,18 @@ function NavBar() {
         {["Profile", "Log Out"].map((text, index) => (
           <ListItem key={text} disablePadding sx={{ width: "100%" }}>
             {text === "Log Out" ? (
-              <ListItemButton  onClick={handleSignOut}>
+              <ListItemButton onClick={handleSignOut}>
                 <ListItemIcon>
                   <MailIcon />
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
             ) : (
-              <Link href="/client/Profile" passHref style={{ width: "100%", textDecoration: "none" }}>
+              <Link
+                href="/client/Profile"
+                passHref
+                style={{ width: "100%", textDecoration: "none" }}
+              >
                 <ListItemButton sx={{ width: "100%" }}>
                   <ListItemIcon>
                     <AccountCircleIcon />
@@ -430,6 +437,5 @@ function NavBar() {
   );
 }
 
-// export default withAuth(NavBar);
-export default NavBar;
-
+export default withAuth(NavBar);
+// export default NavBar;

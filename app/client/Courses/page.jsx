@@ -1,8 +1,9 @@
+"use client"
 import React from "react";
 import CourseCard from "../../components/Course/CourseCard";
 import { Box, Grid, Typography } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-
+import withAuth from "@/app/auth/WithAuth";
 const dummyData = [
   {
     courseId: "CSX3001",
@@ -61,3 +62,5 @@ const Page = () => {
 };
 
 export default Page;
+// export default withAuth(Page);
+

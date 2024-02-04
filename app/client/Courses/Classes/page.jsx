@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import {Grid} from "@mui/material"
 import Card from "@mui/material/Card";
@@ -10,6 +11,7 @@ import Link from "next/link";
 import ClassCard from "@/app/components/Classes/ClassCard";
 import ClassCalendar from "@/app/components/Classes/ClassCalendar";
 // import { useRouter } from "next/router"; // Import the useRouter hook
+import withAuth from "@/app/auth/WithAuth";
 
 const dummyData = [
   {
@@ -81,3 +83,6 @@ const Page = () => {
 };
 
 export default Page;
+// export default withAuth(Page);
+
+

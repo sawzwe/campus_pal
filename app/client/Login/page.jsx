@@ -6,23 +6,26 @@ import Button from "@mui/material/Button";
 import { UserAuth } from "@/app/auth/AuthContext";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Box } from "@mui/material";
 
 const Page = () => {
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const { user, signInWithGoogle, logOut } = UserAuth();
-  useEffect(() => {
-    // Check for authentication status on component mount
-    const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
-    if (storedIsLoggedIn) {
-      setIsLoggedIn(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   // Check for authentication status on component mount
+  //   const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
+  //   if (storedIsLoggedIn) {
+  //     setIsLoggedIn(true);
+  //   }
+  // }, []);
+
+  // console.log(user);
 
   const handleSignIn = async () => {
     try {
-      await signInWithGoogle(setIsLoggedIn);
+      await signInWithGoogle();
     } catch (err) {
       console.log(err);
     }
@@ -37,13 +40,11 @@ const Page = () => {
 
   return (
     <>
-      <div>Client Login Page</div>
-      <Button onClick={handleSignIn}>Sign in with Google</Button>
-      {/* {isLoggedIn && (
-        <>
-          <Landing setIsLoggedIn={setIsLoggedIn} />
-        </>
-      )} */}
+      <Box sx={{marginTop:'80px'}}>
+        {" "}
+        <div>Client Login Page</div>
+        <Button onClick={handleSignIn}>Sign in with Google</Button>
+      </Box>
     </>
   );
 };

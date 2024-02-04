@@ -46,7 +46,7 @@ import { UserAuth } from "./auth/AuthContext";
 import { Typography } from "@mui/material";
 const Home = () => {
   const { user } = UserAuth();
-
+  console.log("Home User",user);
   // if (!user) {
   //   return (<>
   //     <Login />
@@ -54,6 +54,8 @@ const Home = () => {
   // }
 
   return <Landing />;
+  // return <Login />;
+
 };
 
 export default withAuth(Home);

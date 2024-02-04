@@ -14,6 +14,7 @@ import MuiAlert from "@mui/material/Alert";
 import LandingCard from "@/app/components/Course/LandingCard";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import withAuth from "@/app/auth/WithAuth";
 
 // const dummyOfferedCoursesData = [
 //   {
@@ -278,5 +279,6 @@ const Page = () => {
     </>
   );
 };
-
 export default Page;
+
+// export default withAuth(Page);

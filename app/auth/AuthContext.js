@@ -55,11 +55,14 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ user, signInWithGoogle, logOut }}>
+      {/* {console.log('Auth Context Details',{ user, signInWithGoogle, logOut })} */}
       {children}
     </AuthContext.Provider>
   )
 }
 
 export const UserAuth = () => {
-  return useContext(AuthContext)
+  const context = useContext(AuthContext);
+  // console.log("userauth context",context);
+  return context;
 }
