@@ -35,9 +35,51 @@
 
 // export default withAuth;
 
+//// V2
+// "use client";
+// import { useRouter } from "next/navigation";
+// import { useEffect, useState } from 'react';
+// import { getAuth, onAuthStateChanged } from 'firebase/auth';
+// import { UserAuth } from './AuthContext';
+
+// function withAuth(Component) {
+//   return function AuthenticatedComponent(props) {
+//     const { user: contextUser } = UserAuth(); // Assuming this is updated after auth changes
+//     const router = useRouter();
+//     const [isAuthChecked, setIsAuthChecked] = useState(false);
+//     const auth = getAuth();
+
+//     useEffect(() => {
+//       // Immediately use context user if available
+//       if (contextUser) {
+//         setIsAuthChecked(true);
+//         return;
+//       }
+
+//       const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+//         if (!firebaseUser) {
+//           router.push('/client/Login'); // Redirect if no user
+//         } else {
+//           setIsAuthChecked(true); // Auth state confirmed, allow rendering
+//         }
+//       });
+
+//       return () => unsubscribe(); // Cleanup on unmount
+//     }, [contextUser, router]);
+
+//     if (!isAuthChecked) {
+//       return null; // or a more user-friendly loading indicator
+//     }
+
+//     return <Component {...props} />;
+//   };
+// }
+
+// export default withAuth;
+
 
 "use client";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router"; // Make sure to import from "next/router"
 import { useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { UserAuth } from './AuthContext';
@@ -45,27 +87,31 @@ import { UserAuth } from './AuthContext';
 function withAuth(Component) {
   return function AuthenticatedComponent(props) {
     const { user: contextUser } = UserAuth(); // Assuming this is updated after auth changes
-    const router = useRouter();
     const [isAuthChecked, setIsAuthChecked] = useState(false);
-    const auth = getAuth();
 
+    // This effect will only run on the client side
     useEffect(() => {
-      // Immediately use context user if available
-      if (contextUser) {
-        setIsAuthChecked(true);
-        return;
-      }
+      if (typeof window !== 'undefined') {
+        const auth = getAuth();
+        const router = useRouter();
 
-      const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-        if (!firebaseUser) {
-          router.push('/client/Login'); // Redirect if no user
-        } else {
-          setIsAuthChecked(true); // Auth state confirmed, allow rendering
+        // Immediately use context user if available
+        if (contextUser) {
+          setIsAuthChecked(true);
+          return;
         }
-      });
 
-      return () => unsubscribe(); // Cleanup on unmount
-    }, [contextUser, router]);
+        const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+          if (!firebaseUser) {
+            router.push('/client/Login'); // Redirect if no user
+          } else {
+            setIsAuthChecked(true); // Auth state confirmed, allow rendering
+          }
+        });
+
+        return () => unsubscribe(); // Cleanup on unmount
+      }
+    }, [contextUser]);
 
     if (!isAuthChecked) {
       return null; // or a more user-friendly loading indicator
@@ -76,4 +122,3 @@ function withAuth(Component) {
 }
 
 export default withAuth;
-
