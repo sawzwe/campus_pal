@@ -1,6 +1,6 @@
 import React from 'react'
 import withAuth from '@/app/auth/WithAuth';
-const page = () => {
+const Page = () => {
   return (
     <div>
       Client Booking Details Page
