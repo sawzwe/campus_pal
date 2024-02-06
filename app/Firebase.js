@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, setPersistence, browserLocalPersistence } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDRSmbUXkbmqkhReAiZY2xzDHCHHm8C4NI",
@@ -13,6 +13,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app); // get information on who is authenticated
 
+
+setPersistence(auth, browserLocalPersistence)
+  .then(() => {
+    // Persistence is set to local, auth state will persist across sessions
+  })
+  .catch((error) => {
+    console.error("Firebase auth persistence error:", error);
+  });
+
+
 const provider = new GoogleAuthProvider();
 
 export const signInWithGoogle = async (setIsLoggedIn) => {
@@ -24,17 +34,6 @@ export const signInWithGoogle = async (setIsLoggedIn) => {
       const email = result.user.email;
       const profilePic = result.user.photoURL;
       const uid = result.user.uid;
-
-      localStorage.setItem("name", name);
-      localStorage.setItem("email", email);
-      localStorage.setItem("profilePic", profilePic);
-      localStorage.setItem("uid", uid);
-      // if (auth.auth().currentUser !== null)
-      //   console.log("user id: " + firebase.auth().currentUser.uid);
-
-      setIsLoggedIn(true);
-
-      localStorage.setItem("isLoggedIn", "true");
     })
     .catch((error) => {
       console.log(error);

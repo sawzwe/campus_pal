@@ -1,73 +1,77 @@
-// // import { useRouter } from "next/navigation";
-// // import { useEffect } from 'react';
-// // import {UserAuth} from './AuthContext'
-
-// // function withAuth(Component) {
-// //   return function AuthenticatedComponent(props) {
-// //     const { user } = UserAuth();
-// //     const router = useRouter();
-
-// //     useEffect(() => {
-// //       if (!user) {
-// //         router.push('/'); 
-// //       }
-// //     }, [user, router]);
-
-// //     return user ? <Component {...props} /> : null; 
-// //   };
-// // }
-
-// // export default withAuth;
-
-// // File: withAuth.js
-
-// "use client"
+// "use client";
 // import { useRouter } from "next/navigation";
-// import { useEffect } from 'react';
+// import { useEffect, useState } from 'react';
+// import { getAuth, onAuthStateChanged } from 'firebase/auth';
 // import { UserAuth } from './AuthContext';
-// import Login from "/app/client/Login/page.jsx";
+
 // function withAuth(Component) {
 //   return function AuthenticatedComponent(props) {
-//     const { user } = UserAuth();
 //     const router = useRouter();
+//     const { user } = UserAuth();
+//     const [isAuthChecked, setIsAuthChecked] = useState(false);
+//     const auth = getAuth();
 
 //     useEffect(() => {
-//       // If there's no user, don't redirect, just stay on the login page
-//       if (!user) {
-//         // router.push('/'); // Comment this out to avoid redirecting
-//       }
-//     }, [user, router]);
+//       const unsubscribe = onAuthStateChanged(auth, (user) => {
+//         if (!user) {
+//           router.push('/client/Login'); // Redirect to login if no user
+//         } else {
+//           setIsAuthChecked(true); // Auth state confirmed, allow rendering
+//         }
+//       });
 
-//     // If there's a user, render the component that was passed in with props
-//     return user ? <Component {...props} /> : (<><Login /></>); // Render Login component instead of null
+//       return () => unsubscribe(); // Cleanup subscription on unmount
+//     }, [router]);
 
+//     // Prevent rendering until the auth check is complete
+//     if (!isAuthChecked) {
+//       return null; // or a loading indicator
+//     }
+
+//     // Render the component only after auth check is complete
+//     return <Component {...props} />;
 //   };
 // }
 
 // export default withAuth;
 
 
-
-"use client"
+"use client";
 import { useRouter } from "next/navigation";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { UserAuth } from './AuthContext';
 
 function withAuth(Component) {
   return function AuthenticatedComponent(props) {
-    const { user } = UserAuth();
+    const { user: contextUser } = UserAuth(); // Assuming this is updated after auth changes
     const router = useRouter();
+    const [isAuthChecked, setIsAuthChecked] = useState(false);
+    const auth = getAuth();
 
     useEffect(() => {
-      // If there's no user, redirect to the login page
-      if (!user) {
-        router.push('/client/Login'); // Adjust this line to point to the correct login route
+      // Immediately use context user if available
+      if (contextUser) {
+        setIsAuthChecked(true);
+        return;
       }
-    }, [user, router]);
 
-    // If there's a user, render the component that was passed in with props
-    // Otherwise, render null or a loading indicator while redirecting
-    return user ? <Component {...props} /> : null;
+      const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+        if (!firebaseUser) {
+          router.push('/client/Login'); // Redirect if no user
+        } else {
+          setIsAuthChecked(true); // Auth state confirmed, allow rendering
+        }
+      });
+
+      return () => unsubscribe(); // Cleanup on unmount
+    }, [contextUser, router]);
+
+    if (!isAuthChecked) {
+      return null; // or a more user-friendly loading indicator
+    }
+
+    return <Component {...props} />;
   };
 }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import withAuth from '@/app/auth/WithAuth';
 const page = () => {
   return (
     <div>
@@ -8,4 +8,4 @@ const page = () => {
   )
 }
 
-export default page
+export default withAuth(Page);

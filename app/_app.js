@@ -2,10 +2,22 @@
 
 import Layout from "./layout";
 import { AuthContextProvider } from "./auth/AuthContext";
+import withAuth from "./auth/WithAuth";
 
 
 
-export default function MyApp({ Component, pageProps }) {
+// export default function MyApp({ Component, pageProps }) {
+//     return (
+//     //   <AuthContextProvider>
+//         <Layout>
+//           <Component {...pageProps} />
+//         </Layout>
+//     //   </AuthContextProvider>
+//     );
+//   }
+  
+
+function MyApp({ Component, pageProps }) {
     return (
     //   <AuthContextProvider>
         <Layout>
@@ -14,4 +26,5 @@ export default function MyApp({ Component, pageProps }) {
     //   </AuthContextProvider>
     );
   }
-  
+
+export default withAuth(MyApp);
