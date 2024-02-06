@@ -79,7 +79,7 @@
 
 
 "use client";
-import { useRouter } from "next/router"; // Make sure to import from "next/router"
+import { useRouter } from "next/router"; // Import from "next/router"
 import { useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { UserAuth } from './AuthContext';
@@ -87,13 +87,13 @@ import { UserAuth } from './AuthContext';
 function withAuth(Component) {
   return function AuthenticatedComponent(props) {
     const { user: contextUser } = UserAuth(); // Assuming this is updated after auth changes
+    const router = useRouter(); // Call `useRouter` at the top level
     const [isAuthChecked, setIsAuthChecked] = useState(false);
 
     // This effect will only run on the client side
     useEffect(() => {
       if (typeof window !== 'undefined') {
         const auth = getAuth();
-        const router = useRouter();
 
         // Immediately use context user if available
         if (contextUser) {
@@ -111,7 +111,7 @@ function withAuth(Component) {
 
         return () => unsubscribe(); // Cleanup on unmount
       }
-    }, [contextUser]);
+    }, [contextUser, router]); // Include `router` in the dependency array
 
     if (!isAuthChecked) {
       return null; // or a more user-friendly loading indicator
