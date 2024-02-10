@@ -26,8 +26,6 @@ import withAuth from "../../auth/WithAuth";
 // export default function NavBar() {
 function NavBar() {
   const { user, signInWithGoogle, logOut } = UserAuth();
-  if (!user) return null;
-
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
 
@@ -146,6 +144,8 @@ function NavBar() {
       </List>
     </Box>
   );
+
+  if (!user) return null;
 
   return (
     <div className={styles.navbarWrapper} style={{ paddingBottom: "20px" }}>
