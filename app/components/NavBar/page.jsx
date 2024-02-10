@@ -173,5 +173,5 @@ function NavBar() {
   );
 }
 
-export default withAuth(NavBar);
+export default NavBar;
 // export default NavBar;

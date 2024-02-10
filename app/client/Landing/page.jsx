@@ -15,6 +15,7 @@ import LandingCard from "@/app/components/Course/LandingCard";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import withAuth from "@/app/auth/WithAuth";
+import { UserAuth } from "@/app/auth/AuthContext";
 
 // const dummyOfferedCoursesData = [
 //   {
@@ -65,6 +66,32 @@ const BannerSlideshow = () => {
 };
 
 const Page = () => {
+  const { user } = UserAuth();
+
+  const [render, setRender] = useState(false);
+
+  useEffect(() => {
+    if (!user) {
+      router.push("/client/Login");
+    } else {
+      setRender(true);
+      // const fetchData = async () => {
+      //   try {
+      //     const response = await fetch(
+      //       "https://tutorplus-backend.vercel.app/api/offeredCourses"
+      //     ); // Replace with your actual API endpoint
+      //     const data = await response.json();
+      //     setOfferedCoursesData(data);
+      //     setLoading(false); // Assuming your API response is an array of anime objects
+      //   } catch (error) {
+      //     console.error("Error fetching data:", error);
+      //   }
+      // };
+
+      // fetchData();
+    }
+  }, []);
+
   const [offeredCoursesData, setOfferedCoursesData] = useState([]);
 
   // Add the useRouter hook
@@ -137,77 +164,98 @@ const Page = () => {
 
   const [loading, setLoading] = useState(true);
 
-  if (loading) {
-    // Render the loading GIF while fetching tasks
+  if (render) {
+    if (loading) {
+      // Render the loading GIF while fetching tasks
+      return (
+        <div className="flex justify-center items-center">
+          <h1>Cooking your courses ^^</h1>
+          <img src="/loading1.gif" alt="Loading..." />
+        </div>
+      );
+    }
     return (
-      <div className="flex justify-center items-center">
-        <h1>Cooking your courses ^^</h1>
-        <img src="/loading1.gif" alt="Loading..." />
-      </div>
-    );
-  }
-
-  return (
-    <>
-      <div className="banner">
-        <BannerSlideshow />
-        <h1 className="lg:pt-5 pt-1 text-2xl md:text-5xl" style={titleStyle}>
-          Welcome to VMS Tutoring
-        </h1>
-      </div>
-      <div className="p-5 lg:pl-20 lg:pr-20 ">
-        <div>
-          <h1
-            className="pb-3 text-xl md:pt-10 md:text-2xl"
-            style={{
-              textAlign: "left",
-              fontFamily: "Helvetica, sans-serif",
-            }}
-          >
-            Offered Courses:
+      <>
+        <div className="banner">
+          <BannerSlideshow />
+          <h1 className="lg:pt-5 pt-1 text-2xl md:text-5xl" style={titleStyle}>
+            Welcome to VMS Tutoring
           </h1>
         </div>
-        <Grid container spacing={4}>
-          {offeredCoursesData.map((course, index) => (
-            <Grid item xs={12} md={6} lg={4} key={index}>
-              <LandingCard course={course} onCardClick={handleCardClick} />
-            </Grid>
-          ))}
-        </Grid>
-      </div>
-      <Button onClick={handleSignOut}>Sign out</Button>
-
-      {/* Confirmation Dialog */}
-      <Dialog
-        open={isDialogOpen}
-        onClose={handleCloseDialog}
-        aria-labelledby="confirmation-dialog-title"
-        aria-describedby="confirmation-dialog-description"
-      >
-        <Slide
-          direction="up"
-          in={isDialogOpen}
-          mountOnEnter
-          unmountOnExit
-          timeout={{ enter: 700, exit: 700 }}
-        >
+        <div className="p-5 lg:pl-20 lg:pr-20 ">
           <div>
-            <DialogTitle
-              id="confirmation-dialog-title"
+            <h1
+              className="pb-3 text-xl md:pt-10 md:text-2xl"
               style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "1em",
-                textAlign: "center",
-                paddingTop: "1.5em",
+                textAlign: "left",
+                fontFamily: "Helvetica, sans-serif",
               }}
             >
-              Do you confirm to register for {selectedCourse?.title}?
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText
-                id="confirmation-dialog-description"
+              Offered Courses:
+            </h1>
+          </div>
+          <Grid container spacing={4}>
+            {offeredCoursesData.map((course, index) => (
+              <Grid item xs={12} md={6} lg={4} key={index}>
+                <LandingCard course={course} onCardClick={handleCardClick} />
+              </Grid>
+            ))}
+          </Grid>
+        </div>
+        <Button onClick={handleSignOut}>Sign out</Button>
+
+        {/* Confirmation Dialog */}
+        <Dialog
+          open={isDialogOpen}
+          onClose={handleCloseDialog}
+          aria-labelledby="confirmation-dialog-title"
+          aria-describedby="confirmation-dialog-description"
+        >
+          <Slide
+            direction="up"
+            in={isDialogOpen}
+            mountOnEnter
+            unmountOnExit
+            timeout={{ enter: 700, exit: 700 }}
+          >
+            <div>
+              <DialogTitle
+                id="confirmation-dialog-title"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "1em",
+                  textAlign: "center",
+                  paddingTop: "1.5em",
+                }}
+              >
+                Do you confirm to register for {selectedCourse?.title}?
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText
+                  id="confirmation-dialog-description"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "1em",
+                    textAlign: "center",
+                  }}
+                >
+                  <img
+                    src="/confirm.svg" // Replace with the actual path to your image in the public folder
+                    alt="Confirmation Image"
+                    style={{
+                      width: "100px", // Adjust the width as needed
+                      height: "auto", // Maintain aspect ratio
+                      marginRight: "1em", // Add spacing between the image and text
+                    }}
+                  />
+                  <span>Select your schedule after confirmation.</span>
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -216,69 +264,51 @@ const Page = () => {
                   textAlign: "center",
                 }}
               >
-                <img
-                  src="/confirm.svg" // Replace with the actual path to your image in the public folder
-                  alt="Confirmation Image"
-                  style={{
-                    width: "100px", // Adjust the width as needed
-                    height: "auto", // Maintain aspect ratio
-                    marginRight: "1em", // Add spacing between the image and text
+                <Button onClick={handleCloseDialog} color="primary">
+                  No, thanks
+                </Button>
+                <Button
+                  onClick={() => {
+                    handleCloseDialog();
+                    showSuccessNotification();
                   }}
-                />
-                <span>Select your schedule after confirmation.</span>
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "1em",
-                textAlign: "center",
-              }}
-            >
-              <Button onClick={handleCloseDialog} color="primary">
-                No, thanks
-              </Button>
-              <Button
-                onClick={() => {
-                  handleCloseDialog();
-                  showSuccessNotification();
-                }}
-                color="primary"
-              >
-                Confirm
-              </Button>
-            </DialogActions>
-          </div>
-        </Slide>
-      </Dialog>
-      <Snackbar
-        open={isSuccessNotificationOpen}
-        autoHideDuration={4000}
-        onClose={closeSuccessNotification}
-        anchorOrigin={{
-          vertical: "top", // Show the notification at the top
-          horizontal: "center", // Center it horizontally
-        }}
-        style={{
-          paddingTop: "20px", // Add padding to the top
-          transition: "opacity 2s ease-in-out", // Adjust the duration as needed
-        }}
-      >
-        <MuiAlert
-          elevation={6}
-          variant="filled"
+                  color="primary"
+                >
+                  Confirm
+                </Button>
+              </DialogActions>
+            </div>
+          </Slide>
+        </Dialog>
+        <Snackbar
+          open={isSuccessNotificationOpen}
+          autoHideDuration={4000}
           onClose={closeSuccessNotification}
-          severity="success"
+          anchorOrigin={{
+            vertical: "top", // Show the notification at the top
+            horizontal: "center", // Center it horizontally
+          }}
+          style={{
+            paddingTop: "20px", // Add padding to the top
+            transition: "opacity 2s ease-in-out", // Adjust the duration as needed
+          }}
         >
-          You&apos;ve successfully registered for {selectedCourse?.title}.{" "}
-          <Link href="/client/Courses">Take me there</Link>.
-        </MuiAlert>
-      </Snackbar>
-    </>
-  );
+          <MuiAlert
+            elevation={6}
+            variant="filled"
+            onClose={closeSuccessNotification}
+            severity="success"
+          >
+            You&apos;ve successfully registered for {selectedCourse?.title}.{" "}
+            <Link href="/client/Courses">Take me there</Link>.
+          </MuiAlert>
+        </Snackbar>
+      </>
+    );
+  } else {
+    // do nothing
+  }
 };
 // export default Page;
 
-export default withAuth(Page);
+export default Page;
