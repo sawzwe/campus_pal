@@ -34,7 +34,7 @@ const Page = () => {
     } else {
       setRender(true);
     }
-  });
+  }, [user]);
 
   if (render) {
     return (
