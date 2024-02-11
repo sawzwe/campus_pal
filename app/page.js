@@ -37,29 +37,18 @@
 
 // export default Home;
 
-"use client"
+"use client";
 import React, { useEffect } from "react";
 import Landing from "/app/client/Landing/page.jsx";
 import Login from "/app/client/Login/page.jsx";
-import withAuth from "./auth/WithAuth"
+import withAuth from "./auth/WithAuth";
 import { UserAuth } from "./auth/AuthContext";
 import { Typography } from "@mui/material";
+
 const Home = () => {
   const { user } = UserAuth();
-  console.log("Home User",user);
-  // if (!user) {
-  //   return (<>
-  //     <Login />
-  //   </>);
-  // }
-
   return <Landing />;
-  // return <Login />;
-
 };
 
 export default withAuth(Home);
 // export default Home;
-
-
-

@@ -47,15 +47,59 @@ const Page = () => {
   const router = useRouter();
   const { user, signInWithGoogle } = UserAuth();
 
+  // useEffect(() => {
+  //   // Assuming `user` is updated asynchronously somewhere after successful sign-in
+  //   if (user) {
+  //     router.push("/");
+  //   }
+  // }, [user, router]); // Depend on `user` to ensure it's updated before running this effect
+
   useEffect(() => {
     if (user) {
+      console.log("USER HAS SIGNED IN", user);
+      // This ensures we only make the API call when user data is available
+      fetch("/api/storeUser", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.error("Error storing user:", error));
+
       router.push("/");
     }
-  }, [user, router]);
+  }, [user, router]); // Depend on `user` to ensure it's updated before running this effect
 
   const handleSignIn = async () => {
     try {
+      console.log("SIGNING IN");
       await signInWithGoogle();
+      // console.log("TO POST:", user.uid, user.email, user.displayName);
+      console.log("USER HAS SIGNED IN");
+      // Now make the API call here or ensure this effect runs after user is updated
+      if (user) {
+        // Assuming 'user' contains the Firebase user object after successful sign-in
+        fetch("/api/storeUser", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+          }),
+        });
+      } else {
+        console.log("NO USER FOUND TO POST");
+      }
     } catch (err) {
       console.error(err);
     }
