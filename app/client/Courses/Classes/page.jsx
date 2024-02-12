@@ -1,6 +1,6 @@
-"use client"
-import React from "react";
-import {Grid} from "@mui/material"
+"use client";
+import React, { useState, useEffect } from "react";
+import { Grid } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
@@ -12,6 +12,7 @@ import ClassCard from "@/app/components/Classes/ClassCard";
 import ClassCalendar from "@/app/components/Classes/ClassCalendar";
 // import { useRouter } from "next/router"; // Import the useRouter hook
 import withAuth from "@/app/auth/WithAuth";
+import { useRouter } from "next/navigation";
 
 const dummyData = [
   {
@@ -22,9 +23,9 @@ const dummyData = [
     lecturerId: "LUC123",
     dateCreated: "2023-09-10",
     sessionDates: ["2023-09-15", "2023-09-22", "2023-09-29"],
-    location:"TrueLab",
+    location: "TrueLab",
     goals: "Never gonna give you up",
-    tools: ["MongoDB","UI/UX", "Python"]
+    tools: ["MongoDB", "UI/UX", "Python"],
   },
   {
     courseId: "CSX3001",
@@ -34,9 +35,9 @@ const dummyData = [
     lecturerId: "LYN456",
     dateCreated: "2023-09-10",
     sessionDates: ["2023-09-18", "2023-09-19", "2023-09-29"],
-    location:"TrueLab",
+    location: "TrueLab",
     goals: "Anime girls are real kekw",
-    tools: ["SQL","GCP", "Python"]
+    tools: ["SQL", "GCP", "Python"],
   },
 ];
 
@@ -75,14 +76,11 @@ const Page = () => {
           paddingRight: "10px",
         }}
       >
-        <ClassCalendar classDate = {dummyData}/>
-        <ClassCard classes={dummyData}/>
+        <ClassCalendar classDate={dummyData} />
+        <ClassCard classes={dummyData} />
       </Box>
     </div>
   );
 };
 
 export default withAuth(Page);
-// export default withAuth(Page);
-
-

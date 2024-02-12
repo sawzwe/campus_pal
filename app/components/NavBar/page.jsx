@@ -145,8 +145,10 @@ function NavBar() {
     </Box>
   );
 
+  if (!user) return null;
+
   return (
-    <div className={styles.navbarWrapper}>
+    <div className={styles.navbarWrapper} style={{ paddingBottom: "20px" }}>
       <Box
         sx={{
           display: "flex",
@@ -173,5 +175,5 @@ function NavBar() {
   );
 }
 
-export default withAuth(NavBar);
+export default NavBar;
 // export default NavBar;
